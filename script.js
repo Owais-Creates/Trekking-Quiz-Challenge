@@ -66,3 +66,27 @@ const questions = [
 
 ]
 
+// Selecting elements
+
+const quizQuestions = document.querySelector("#questions");
+const userInput = document.querySelectorAll(".answer");
+const [option_1, option_2, option_3, option_4] = document.querySelectorAll("#option_1", "#option_2", "#option_3", "#option_4");
+const button = document.querySelector("#btn")
+const currentQuestion = 0;
+let score = 0;
+
+
+const loadQuiz = () => {
+
+    const { question, option } = questions[currentQuestion];
+    quizQuestions.innerText = question;
+
+    option.forEach((value, index) => {
+        const element = document.getElementById(`option_${index + 1}`);
+        if (element) {
+            element.innerText = value;
+        }
+    })
+}
+
+loadQuiz();
