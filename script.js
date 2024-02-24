@@ -72,10 +72,10 @@ const quizQuestions = document.querySelector("#questions");
 const userInput = document.querySelectorAll(".answer");
 const [option_1, option_2, option_3, option_4] = document.querySelectorAll("#option_1", "#option_2", "#option_3", "#option_4");
 const button = document.querySelector("#btn")
-const currentQuestion = 0;
+let currentQuestion = 0;
 let score = 0;
 
-
+// Dynamically loading the questions and options
 const loadQuiz = () => {
 
     const { question, option } = questions[currentQuestion];
@@ -90,3 +90,36 @@ const loadQuiz = () => {
 }
 
 loadQuiz();
+
+// Getting the index of the checked option when submit button is clicked
+
+const getOptionIndex = () => {
+
+    let optionIndex;
+
+    userInput.forEach((value, index) => {
+
+        if (value.checked) {
+            optionIndex = index;
+        }
+    })
+
+    return optionIndex;
+}
+
+// Adding the functionality to the submit button ( changing the questions ans options when the submit button is clicked )
+button.addEventListener("click", () => {
+    const selectedIndex = getOptionIndex()
+
+    if (selectedIndex == questions[currentQuestion]["answer"]) {
+        score++;
+        console.log(score);
+    }
+currentQuestion++
+    if (currentQuestion < questions.length) {
+        loadQuiz();
+    }
+
+});
+
+
