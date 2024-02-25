@@ -21,7 +21,7 @@ const questions = [
             'Sherpa',
             'Pathfinder'
         ],
-        answer: 3
+        answer: 2
 
     },
 
@@ -47,7 +47,7 @@ const questions = [
             'Tent',
             'Bivouac'
         ],
-        answer: 4
+        answer: 3
 
     },
 
@@ -60,7 +60,7 @@ const questions = [
             'Acclimatization',
             'Climbing condition',
         ],
-        answer: 3
+        answer: 2
 
     }
 
@@ -113,9 +113,8 @@ button.addEventListener("click", () => {
 
     if (selectedIndex == questions[currentQuestion]["answer"]) {
         score++;
-        console.log(score);
     }
-currentQuestion++
+    currentQuestion++
     if (currentQuestion < questions.length) {
         loadQuiz();
     }
