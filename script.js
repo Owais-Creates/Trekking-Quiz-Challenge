@@ -68,6 +68,7 @@ const questions = [
 
 // Selecting elements
 
+const quizContainer = document.getElementById("mainContainer")
 const quizQuestions = document.querySelector("#questions");
 const userInput = document.querySelectorAll(".answer");
 const [option_1, option_2, option_3, option_4] = document.querySelectorAll("#option_1", "#option_2", "#option_3", "#option_4");
@@ -95,29 +96,37 @@ loadQuiz();
 
 const getOptionIndex = () => {
 
-    let optionIndex;
+    let AnswerElement = Array.from(userInput);
+    return AnswerElement.findIndex((value) => value.checked);
 
-    userInput.forEach((value, index) => {
+    
+}
 
-        if (value.checked) {
-            optionIndex = index;
-        }
-    })
+getOptionIndex()
 
-    return optionIndex;
+const deSelect = () => {
+    userInput.forEach((value) => value.checked = false)
 }
 
 // Adding the functionality to the submit button ( changing the questions ans options when the submit button is clicked )
 button.addEventListener("click", () => {
     const selectedIndex = getOptionIndex()
 
-    if (selectedIndex == questions[currentQuestion]["answer"]) {
-        score++;
-    }
+   
+        if (selectedIndex === questions[currentQuestion].correctAnswer) {
+            // If the selected option is correct, increment the score by 1
+            score = score + 1;
+        }
+
     currentQuestion++
+
     if (currentQuestion < questions.length) {
+        deSelect()
         loadQuiz();
+    } else {
+        alert(`${score} out of ${questions.length}`)
     }
+
 
 });
 
